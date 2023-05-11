@@ -294,7 +294,7 @@ $ mkdir nomedapasta
 ```
 E então escreva o comando para criar a imagem do MySQL:
 ```
-$ docker run --name senac-mysql -p 6556:3306 -e MYSQL_ROOT_PASSWORD=suasenha -v ~/nomedapasta:/var/lib/mysql -d mysql
+$ docker run --name=nomedaimagem -p 6556:3306 -e MYSQL_ROOT_PASSWORD=suasenha -v ~/nomedapasta:/var/lib/mysql -d mysql
 ```
 Pronto agora ja temos uma imagem MySQL instalada. Agora, dentro do Servidor Linux(no meu caso o Fedora), clonaremos o repositório que criamos no GitHub:
 ```
