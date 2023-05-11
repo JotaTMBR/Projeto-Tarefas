@@ -1,42 +1,31 @@
-[![My Skills](https://skillicons.dev/icons?i=eclipse,java,spring,postman,maven,mysql,jenkins,docker,git)](https://skillicons.dev)
-
 # Atividade com Sprinboot
 
-Esta atividade tem como objetivo praticar o que foi desenvolvido sobre Springboot e a automatização do GitHub pelo Jenkins, para isso, foi usado a linguagem Java, e o banco de dados com MySQL.
+[![Eclipse](https://skillicons.dev/icons?i=eclipse)](https://www.eclipse.org/downloads/packages/release/2023-03/r/eclipse-ide-java-developers)
+[![Java](https://skillicons.dev/icons?i=java)](https://openjdk.org/)
+[![Spring](https://skillicons.dev/icons?i=spring)](https://spring.io/)
+[![Postman](https://skillicons.dev/icons?i=postman)](https://www.postman.com)
+[![Apache](https://skillicons.dev/icons?i=maven)](https://maven.apache.org)
+[![MySQL](https://skillicons.dev/icons?i=mysql)](https://www.mysql.com)
+[![Jenkins](https://skillicons.dev/icons?i=jenkins)](https://www.jenkins.io)
+[![Docker](https://skillicons.dev/icons?i=docker)](https://www.docker.com)
+[![Git](https://skillicons.dev/icons?i=git)](https://git-scm.com)
 
-## Ferramentas Utilizadas
+Esta atividade teve como objetivo praticar o que foi desenvolvido sobre Springboot e a automatização do GitHub pelo Jenkins, para isso, foi usado a linguagem Java e o banco de dados com MySQL.
 
-- **Eclipse IDE** - É uma IDE para desenvolvimento Java, porém suporta várias outras linguagens a partir de plugins como C/C++, PHP, ColdFusion, Python, Scala e Kotlin. Ele foi feito em Java e segue o modelo open source de desenvolvimento de software.
+## Tarefas
 
-- **Java** - Linguagem de programação rápida, segura e confiável para codificar tudo, desde aplicações móveis e software empresarial até aplicações de big data e tecnologias do servidores.
+Nesta Atividade foi proposto um cenário onde um usuário precisava organizar suas tarefas de forma mais rapida e eficiente, a aplicação fornece atendimento às necessidade do usuário, permitindo as seguintes funções:
 
-- **Springboot** - É um framework que torna fácil a criação de aplicações Spring autossuficientes e robustas, possibilitando a execução imediata.
-
-- **Postman** - É uma plataforma de API para desenvolvedores projetarem, construírem, testarem e iterarem suas APIs.
-
-- **Maven** - é uma ferramenta de automação de compilação utilizada primariamente em projetos Java. Ela é similar à ferramenta Ant, mas é baseada em conceitos e trabalhos diferentes em um modo diferente.
-
-- **MySQL** - É um sistema gerenciador de banco de dados relacional de código aberto usado na maioria das aplicações gratuitas para gerir suas bases de dados, ele utiliza a linguagem SQL (Structure Query Language – Linguagem de Consulta Estruturada), que é a linguagem mais popular para inserir, acessar e gerenciar o conteúdo armazenado num banco de dados.
-
-- **Jenkins** - É um servidor de automação de código aberto. Ele ajuda a automatizar as partes do desenvolvimento de software relacionadas à construção, teste e implantação, facilitando a integração e a entrega contínuas.
-
-- **Docker** - É uma plataforma open source que facilita a criação e administração de ambientes isolados. Ele possibilita o empacotamento de uma aplicação ou ambiente dentro de um container, se tornando portátil para qualquer outro host que contenha o Docker instalado.
-
-## Objetivos
-
-Nesta Atividade foi proposto um cenário onde um gestor precisava organizar suas tarefas de forma mais rapida e eficiente, a aplicação fornece atendimento às necessidade do usuário, permitindo as seguintes funções:
-
-- Listagem das tarefas cadastradas;
-- Listagem das tarefas pelo titulo cadastrado;
-- Listagem das tarefas filtradas pelo estado delas("Aberto" ou "Finalizado");
-- Cadastros de novas tarefas;
-- Atualização das informações de tarefas existentes.
+- Listar as Tarefas Cadastradas;
+- Listar as tarefas pelo titulo cadastrado;
+- Listar as tarefas filtradas pelo estado delas("Aberto" ou "Finalizado");
+- Cadastrar novas tarefas;
+- Atualizar as informações de tarefas existentes.
 
 ---
 ## Criando o Banco de Dados
 
-A primeira etapa é criar um banco de dado, para isso usaremos a ferramenta *MySQL Workbench*.
-Além da criação do banco de dado, será necessário também criar uma tabela com as seguintes informações:
+A primeira etapa é criar um banco de dado, para isso usaremos a ferramenta [*MySQL Workbench*](https://dev.mysql.com/downloads/workbench/). Além da criação do banco de dado, será necessário também criar uma tabela com as seguintes informações:
 
 -   **idtarefa**: foi definido como *primary key*(chave primária) e *auto_increment*(auto incrementar) para garantir um controle e identificação de cada tarefa criada;
 -   **titulo**: foi definido como *varchar(50)* para armazenar 50 caracteres;
@@ -65,8 +54,6 @@ estado enum("Aberto","Finalizado")
 
 Depois de criar o banco de dados com a tabela, vamos criar um novo Projeto Springboot chamado *ProjetoTarefas* junto com o Maven e o Java 17 também.
 
----
-
 ### **Configuração do application.properties**
 
 Neste arquivo será configurado o Banco de dados como por exemplo o ip do MySQL e a porta do Maven, veja abaixo:
@@ -84,7 +71,7 @@ server.port=8095
 ---
 ### **Camada Domain**
 
-O proximo é o script da camada *domain* com o nome **Tarefas**, que tem como objetivo ser uma tabela semelhante a do banco de dados, veja abaixo:
+O proximo é a Classe da camada *domain* com o nome [*Tarefas*](./src/main/java/com/projeto/tarefas/domain/Tarefas.java), que tem como objetivo ser uma tabela semelhante a do banco de dados, veja abaixo:
 ```
 package com.projeto.tarefas.domain;
 
@@ -174,7 +161,8 @@ public class Tarefas {
 ---
 ### **Camada Repository**
 
-Depois vem o script da camada *repository* com o nome **TarefasRepository**:
+Depois vem o arquivo interface da camada *repository* com o nome 
+[*TarefasRepository*](./src/main/java/com/projeto/tarefas/repository/TarefasRepository.java):
 ```
 package com.projeto.tarefas.repository;
 
@@ -194,7 +182,7 @@ public interface TarefasRepository extends JpaRepository<Tarefas,Integer> {
 
 }
 ```
-Também será necessário criar o arquivo *enum* com o nome **Estado**:
+Também será necessário criar o arquivo *enum* com o nome [*Estado*](./src/main/java/com/projeto/tarefas/repository/Estado.java):
 ```
 package com.projeto.tarefas.repository;
 
@@ -205,7 +193,7 @@ public enum Estado {
 ```
 ---
 ### **Camada Controller**
-Agora na camada *controller*, criaremos o ultimo arquivo Java com o nome **TarefasController**:
+Agora na camada *controller*, criaremos o ultimo arquivo Java com o nome [*TarefasController*](./src/main/java/com/projeto/tarefas/controller/TarefasController.java):
 ```
 package com.projeto.tarefas.controller;
 
@@ -269,28 +257,46 @@ public class TarefasController {
 }
 ```
 ---
+## Usando o Postman
+
+O Postman é uma plataforma de API para desenvolvedores projetarem, construírem, testarem e iterarem suas APIs. No caso, testamos a conexão com o banco de dados e o envio de dados para tal, é importante que no arquivo [*applicartion.properties*](./src/main/resources/application.properties) o ip e a porta do mysql esteja com o mesmo do Servidor Linux.
+
+Veja a imagem ilustrativa do Postman abaixo.
+
+!["postman"](./Images/postman.png)
+
+---
 ## Dockerfile e pom.xml
 
 Agora é chegado o a ultima parte dentro do Eclipse IDE ou do Spring Tools Suite 4.
-Iremos criar o arquivo chamado *Dockerfile* com o script abaixo:
+Iremos criar o arquivo chamado [*Dockerfile*](./Dockerfile) com o script abaixo:
 ```
 FROM openjdk:17
 EXPOSE 8095
 ADD target/tarefas.jar tarefas.jar
 ENTRYPOINT ["java","-jar","tarefas.jar"]
 ```
-Depois disso, abra o arquivo pom.xml e nas ultimas linhas adicione o seguinte comando:
+Depois disso, abra o arquivo [*pom.xml*](./pom.xml) e nas ultimas linhas adicione o seguinte comando:
 ```
 <finalName>tarefas</finalName>
 ```
 Veja por uma imagem ilustrativa abaixo:
+
 !["pom.xml"](./Images/pomxml.png)
 
 ### *Agora é só enviar para um repositório no GitHub!*
 ---
 ## Criando a Imagem da Aplicação
 
-Dentro do Servidor Linux(no meu caso o Fedora), clonaremos o repositório que criamos no GitHub:
+Antes de começar a criação de imagem, é importante obviamente ter uma imagem do MySQL instalada no Servidor Linux, caso contrário não irá funcionar. Para isso, primeiramente iremos criar uma pasta onde ficará guardado o volume do MySQL:
+```
+$ mkdir nomedapasta
+```
+E então escreva o comando para criar a imagem do MySQL:
+```
+$ docker run --name senac-mysql -p 6556:3306 -e MYSQL_ROOT_PASSWORD=suasenha -v ~/nomedapasta:/var/lib/mysql -d mysql
+```
+Pronto agora ja temos uma imagem MySQL instalada. Agora, dentro do Servidor Linux(no meu caso o Fedora), clonaremos o repositório que criamos no GitHub:
 ```
 $ git clone https://github.com/seuperfil/seurepositorio
 ```
@@ -311,3 +317,70 @@ Agora precisamos criar o container:
 docker run --name=nomedocontainer -p 8095:8095 nomedaimagem
 ```
 Caso dê certo o terminal irá ficar travado, para destrava basta usar o atalho no teclado **Ctrl + C**.
+
+---
+## Hora de configurar o Jenkins
+
+Para entrar no Jenkins, basta entrar em seu navegador e colocar seu ip localhost junto com a porta padrão do Jenkins: *http://127.0.0.1/8080*. Lá dentro, faça todas as configurações iniciais de usuário. Depois de tudo configurado e enfim logado, siga o caminho abaixo para adicionar o Maven ao Jenkins
+
+*Painel de controle > Gerenciar Jenkins > Ferramenta de configuração global > Maven > Adicionar Maven*
+
+!["jenkins_maven"](./Images/jenkins_maven.png)
+Coloque um nome de facil identificação e a mesma versão instalada no servidor, salve as configurações.
+
+## Permissão para o Jenkins
+
+Para não haver erros de permissão do Jenkins com o Docker, um comando terá que ser executado dentro do Servidor Linux:
+```
+$ sudo usermod -aG jenkins docker
+```
+## Criando uma Nova Tarefa
+
+Na tela de Painel de Controle, clique em Nova Tarefa, Coloque um nome de sua preferência e escolha Pipeline e finalize clicando em "Tudo Certo". Depois disso, marque a caixa "GitHub hook trigger fot GITScm polling", mais para baixo tem a parte do spript da Pipeline que ficara desta forma:
+
+```
+pipeline{
+    agent any
+    tools{
+        maven 'maven_3_8_8'
+    }
+    stages{
+        stage('Build Manven'){
+            steps{
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/seuoerfil/seureporitorio']])
+                sh 'mvn clean install'
+            }
+        }
+        stage('Deletar Container e Imagem'){
+            steps{
+                script{
+                    sh 'docker rm -f senac-tarefas'
+                    sh 'docker rmi senac/tarefas:latest'
+                }
+            }
+        }
+        stage('Criar um Container'){
+            steps{
+                script{
+                    sh 'docker build -t senac/tarefas .'   
+                }
+            }
+        }
+        stage('Criar uma Imagem'){
+            steps{
+                script{
+                    sh 'docker run --name senac-tarefas -p 8095:8095 -d senac/tarefas'
+                }
+            }
+        }
+    }
+}
+```
+Enfim salve as configurações e clique em "Construa Agora". As informações do processo aparecerão na aba "Status" como está aparecendo na imagem abaixo.
+
+!["jenkins_maven"](./Images/jenkins_final.png)
+
+Se na linha aparecer tudo verde, é por que deu tudo certo e está pronto para ser visto basta entrar em seu navegador, colocar o ip localhost, a porta do Maven e o caminho do Controller em [*TarefasController*](./src/main/java/com/projeto/tarefas/controller/TarefasController.java).
+
+
+### *E com isso a Atividade está Finalizada*.
